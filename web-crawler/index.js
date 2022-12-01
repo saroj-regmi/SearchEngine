@@ -8,7 +8,7 @@
 
 // for scrapping the web
 const puppeteer = require("puppeteer");
-
+const codeStripper = require("./controller/_stripCode.js");
 const startScrapping = async () => {
   let scrappedData = {
     title: "",
@@ -38,36 +38,53 @@ const startScrapping = async () => {
       return tag.innerText;
     });
 
+    //getting the sites entire doc
+    const _DOC = await page.content();
+
+    // contains the entire text of the site as a plain text.
+    const textContent = codeStripper(_DOC);
+
     // scrapps the description from the page
-    const description = await page.$eval("meta[name='description']", (meta) => {
-      return meta.name;
-    });
+    const description = (await page.$("meta[name='description']"))
+      ? await page.$eval("meta[name='description']", (meta) => {
+          return meta.name;
+        })
+      : false;
 
     // gets all the keywords from the site
-    // const keywords = await page.$eval("meta[name='keywords']", (meta) => {
-    //   return meta.content;
-    // });
+    const keywords = (await page.$("meta[name='keywords']"))
+      ? await page.$eval("meta[name='keywords']", (meta) => {
+          return meta.content;
+        })
+      : false;
 
-    // // gets the cover image
-    // const coverImage = await page.$eval("meta[property='og:image']", (meta) => {
-    //   return meta.content;
-    // });
+    // gets the cover image
+    const coverImage = (await page.$("meta[property='og:image']"))
+      ? await page.$eval("meta[property='og:image']", (meta) => {
+          return meta.content;
+        })
+      : false;
 
     // setting the scrapped data
-    scrappedData.title = title; // setting the title
-    scrappedData.links = links; // all the links found in the sites
+    // scrappedData.title = title; // setting the title
+    // scrappedData.links = links; // all the links found in the sites
     // scrappedData.link = currentLink; // sets the page's current link
     // scrappedData.coverImage = coverImage; // setting the site's image
 
-    //   closing the page
-    // page.close();
+    console.log({
+      description,
+      keywords,
+      coverImage,
+    });
 
     // closing the browser
     browser.close();
-    console.log(scrappedData);
     return scrappedData;
   } catch (e) {
-    console.log(e.message);
+    console.log("I am in the top level catch section" + e.message);
+
+    // closing the browser
+    browser.close();
   }
 };
 
