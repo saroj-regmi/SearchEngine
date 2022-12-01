@@ -53,6 +53,9 @@ const startScrapping = async () => {
       return meta.content;
     });
 
+
+    // 
+
     // setting the scrapped data
     scrappedData.title = title; // setting the title
     scrappedData.links = links; // all the links found in the sites
@@ -63,7 +66,7 @@ const startScrapping = async () => {
 
     // closing the browser
     browser.close();
-
+    console.log(scrappedData)
     return scrappedData;
   } catch (e) {
     console.log(e.message);
