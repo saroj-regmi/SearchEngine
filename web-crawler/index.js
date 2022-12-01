@@ -27,11 +27,14 @@ const startScrapping = async () => {
   try {
     await page.goto("https://commons.wikimedia.org/wiki/Main_Page");
 
+    // contains all the links from the page
     const links = await page.$$eval("a", (tags) => {
       return tags.map((tag) => tag.href);
     });
 
-    console.log(links);
+    const title = await page.$eval("title", (tag) => {
+      return tag.innerText;
+    });
 
     page.close();
 
