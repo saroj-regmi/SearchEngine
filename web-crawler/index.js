@@ -44,29 +44,27 @@ const startScrapping = async () => {
     });
 
     // gets all the keywords from the site
-    const keywords = await page.$eval("meta[name='keywords']", (meta) => {
-      return meta.content;
-    });
+    // const keywords = await page.$eval("meta[name='keywords']", (meta) => {
+    //   return meta.content;
+    // });
 
-    // gets the cover image
-    const coverImage = await page.$eval("meta[property='og:image']", (meta) => {
-      return meta.content;
-    });
-
-
-    // 
+    // // gets the cover image
+    // const coverImage = await page.$eval("meta[property='og:image']", (meta) => {
+    //   return meta.content;
+    // });
 
     // setting the scrapped data
     scrappedData.title = title; // setting the title
     scrappedData.links = links; // all the links found in the sites
-    scrappedData.link = currentLink; // sets the page's current link
-    scrappedData.coverImage = coverImage; // setting the site's image
+    // scrappedData.link = currentLink; // sets the page's current link
+    // scrappedData.coverImage = coverImage; // setting the site's image
+
     //   closing the page
-    page.close();
+    // page.close();
 
     // closing the browser
     browser.close();
-    console.log(scrappedData)
+    console.log(scrappedData);
     return scrappedData;
   } catch (e) {
     console.log(e.message);
