@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "dotenv": "^16.0.3",
     "mongoose": "^6.7.4",
+    "node-html-parser": "^6.1.4",
     "puppeteer": "^19.3.0"
   }
 }
