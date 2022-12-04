@@ -1,3 +1,5 @@
+import extractFullText from "./extractFullText.js";
+
 const parseSite = async (page) => {
   //
   //
@@ -8,38 +10,38 @@ const parseSite = async (page) => {
   //
 
   // contains all the links from the page
-  const links = await page.$$eval("a", (tags) => {
-    return tags.map((tag) => tag.href);
-  });
+  // const links = await page.$$eval("a", (tags) => {
+  //   return tags.map((tag) => tag.href);
+  // });
 
   // getting the site title
-  const title = await page.$eval("title", (tag) => {
-    return tag.innerText;
-  });
+  // const title = await page.$eval("title", (tag) => {
+  //   return tag.innerText;
+  // });
 
   //getting the sites entire doc
   const _DOC = await page.content();
-
+  if (_DOC) console.log(extractFullText(_DOC));
   // scrapps the description from the page
-  const description = (await page.$("meta[name='description']"))
-    ? await page.$eval("meta[name='description']", (meta) => {
-        return meta.name;
-      })
-    : false;
+  // const description = (await page.$("meta[name='description']"))
+  //   ? await page.$eval("meta[name='description']", (meta) => {
+  //       return meta.name;
+  //     })
+  //   : false;
 
   // gets all the keywords from the site
-  const keywords = (await page.$("meta[name='keywords']"))
-    ? await page.$eval("meta[name='keywords']", (meta) => {
-        return meta.content;
-      })
-    : false;
+  // const keywords = (await page.$("meta[name='keywords']"))
+  //   ? await page.$eval("meta[name='keywords']", (meta) => {
+  //       return meta.content;
+  //     })
+  //   : false;
 
   // gets the cover image
-  const coverImage = (await page.$("meta[property='og:image']"))
-    ? await page.$eval("meta[property='og:image']", (meta) => {
-        return meta.content;
-      })
-    : false;
+  // const coverImage = (await page.$("meta[property='og:image']"))
+  //   ? await page.$eval("meta[property='og:image']", (meta) => {
+  //       return meta.content;
+  //     })
+  //   : false;
 
   return {
     title: "", // main title of the page

@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import parseSite from "./site parser/siteParser";
+import parseSite from "./site parser/siteParser.js";
 
 const startScrapping = async (startingPoint) => {
   //   creating brower instance
@@ -9,7 +9,7 @@ const startScrapping = async (startingPoint) => {
   try {
     await page.goto(startingPoint);
 
-    parseSite(page);
+    const scrappedData = await parseSite(page);
 
     // closing the browser
     browser.close();
