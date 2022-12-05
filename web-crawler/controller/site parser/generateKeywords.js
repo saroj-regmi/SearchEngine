@@ -46,7 +46,6 @@ const generateKeywords = async (page) => {
   const textArray = fullText.split(" ");
   const keywords = extractKeyword(textArray);
 
-  console.log(keywords);
   return keywords;
 };
 

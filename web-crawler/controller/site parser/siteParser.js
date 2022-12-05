@@ -1,5 +1,4 @@
- 
-import generateKeywords from "./generateKeywords.js";
+import getKeywords from "./getKeywords.js";
 
 const parseSite = async (page) => {
   //
@@ -20,9 +19,6 @@ const parseSite = async (page) => {
   //   return tag.innerText;
   // });
 
-  //getting the sites entire doc
-  const keywords = await generateKeywords(page);
-
   // scrapps the description from the page
   // const description = (await page.$("meta[name='description']"))
   //   ? await page.$eval("meta[name='description']", (meta) => {
@@ -31,11 +27,7 @@ const parseSite = async (page) => {
   //   : false;
 
   // gets all the keywords from the site
-  // const keywords = (await page.$("meta[name='keywords']"))
-  //   ? await page.$eval("meta[name='keywords']", (meta) => {
-  //       return meta.content;
-  //     })
-  //   : false;
+  const keywords = await getKeywords(page);
 
   // gets the cover image
   // const coverImage = (await page.$("meta[property='og:image']"))
@@ -51,7 +43,7 @@ const parseSite = async (page) => {
     allText: "", // contains all the site text information
     links: [], // contains all the other links that can reused to scrapp more information and then update the database.
     Description: "", // contains a short description of the site that is queried
-    tags: [], // contains all the words or keywords that best describe the site
+    keywords: keywords, // contains all the words or keywords that best describe the site
   };
 };
 
