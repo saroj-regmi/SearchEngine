@@ -1,4 +1,5 @@
-import extractFullText from "./extractFullText.js";
+ 
+import generateKeywords from "./generateKeywords.js";
 
 const parseSite = async (page) => {
   //
@@ -20,8 +21,8 @@ const parseSite = async (page) => {
   // });
 
   //getting the sites entire doc
-  const _DOC = await page.content();
-  if (_DOC) extractFullText(_DOC);
+  const keywords = await generateKeywords(page);
+
   // scrapps the description from the page
   // const description = (await page.$("meta[name='description']"))
   //   ? await page.$eval("meta[name='description']", (meta) => {

@@ -12,7 +12,7 @@ const extractFullText = async (_DOC) => {
 
     // removing the blank lines
     const strippedText = parsedText.split("\n").join("");
-    console.log(strippedText);
+
     return strippedText;
   }
 };
