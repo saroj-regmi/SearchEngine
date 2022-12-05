@@ -20,6 +20,13 @@ const extractKeyword = (array) => {
     // removing all the pronouns and prepositions
     if (grammer && grammer.includes(currentItem)) continue;
 
+    // removing words shorter than lenght three
+    if (currentItem.length < 2) continue;
+
+    // checking it the word being checked already exists in the keywords or not
+
+    if (keywords.includes(currentItem)) continue;
+
     let repeat = 0;
     for (var j in array) {
       if (currentItem === array[j].slice()) repeat++;
