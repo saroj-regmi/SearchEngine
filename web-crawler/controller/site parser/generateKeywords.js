@@ -1,8 +1,6 @@
 import extractFullText from "./extractFullText.js";
 
 // grammer stuff
-// import prepositions from "./grammer/preposition.json";
-// import pronouns from "./grammer/pronoun.json";
 import { readFile } from "fs/promises";
 
 // prepositions, pronouns articles and common verbs

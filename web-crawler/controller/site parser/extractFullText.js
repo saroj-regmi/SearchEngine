@@ -3,7 +3,7 @@ import { parse } from "node-html-parser";
 const extractFullText = async (_DOC) => {
   if (_DOC) {
     const regx =
-      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>|<style((.|\n|\r)*?)<\/style>|<(...)(\s[^>]*)?\/>/gm;
+      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>|<style((.|\n|\r)*?)<\/style>|<(...)(\s[^>]*)?\/>|<!DOCTYPE html>/gm;
 
     // filtering the scripts and the styles and self closing tags
     let filteredContent = _DOC.replaceAll(regx, "");

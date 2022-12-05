@@ -1,3 +1,4 @@
+import getDescription from "./getDescription.js";
 import getKeywords from "./getKeywords.js";
 
 const parseSite = async (page) => {
@@ -20,11 +21,7 @@ const parseSite = async (page) => {
   // });
 
   // scrapps the description from the page
-  // const description = (await page.$("meta[name='description']"))
-  //   ? await page.$eval("meta[name='description']", (meta) => {
-  //       return meta.name;
-  //     })
-  //   : false;
+  const description = await getDescription(page);
 
   // gets all the keywords from the site
   const keywords = await getKeywords(page);
