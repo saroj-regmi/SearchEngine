@@ -5,16 +5,11 @@ import extractFullText from "./extractFullText.js";
 // import pronouns from "./grammer/pronoun.json";
 import { readFile } from "fs/promises";
 
-// all grammer prepositions
-const preposition = JSON.parse(
-  await readFile(new URL("./grammer/preposition.json", import.meta.url))
+// prepositions, pronouns articles and common verbs
+
+const grammer = JSON.parse(
+  await readFile(new URL("./grammer/grammer.json", import.meta.url))
 );
-const pronouns = JSON.parse(
-  await readFile(new URL("./grammer/pronoun.json", import.meta.url))
-);
-const commonWords = JSON.parse(
-  await readFile(new URL("./grammer/common.json"))
-)
 
 const extractKeyword = (array) => {
   const keywords = [];
@@ -23,11 +18,7 @@ const extractKeyword = (array) => {
     const currentItem = array[i].slice();
 
     // removing all the pronouns and prepositions
-    if (
-      (preposition && preposition.includes(currentItem)) ||
-      (pronouns && pronouns.includes(currentItem))
-    )
-      continue;
+    if (grammer && grammer.includes(currentItem)) continue;
 
     let repeat = 0;
     for (var j in array) {
