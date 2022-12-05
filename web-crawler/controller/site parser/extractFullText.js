@@ -1,15 +1,19 @@
 import { parse } from "node-html-parser";
 
-const root = parse(`<html><head><body> 
-hello how are you <h1>this is chor</h1>
-</body></head></html>`);
-
 const extractFullText = async (_DOC) => {
   if (_DOC) {
-    const _DOC_NO_SCRIPT = _DOC.replace(RegExp(<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>), '')
-    const parsedText = parse(_DOC_NO_SCRIPT).rawText;
-    console.log(parsedText);
-    return parsedText;
+    const regx =
+      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>|<style((.|\n|\r)*?)<\/style>|<(...)(\s[^>]*)?\/>/gm;
+
+    // filtering the scripts and the styles and self closing tags
+    let filteredContent = _DOC.replaceAll(regx, "");
+
+    const parsedText = parse(filteredContent).rawText;
+
+    // removing the blank lines
+    const strippedText = parsedText.split("\n").join("");
+    console.log(strippedText);
+    return strippedText;
   }
 };
 extractFullText();

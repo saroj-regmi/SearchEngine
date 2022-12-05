@@ -1,6 +1,6 @@
 import startScrapping from "./controller/scrapper.js";
 
-const startingPoint = "https://commons.wikimedia.org/wiki/Main_Page";
+const startingPoint = "https://hashnode.com/";
 
 // main scrapper function
 startScrapping(startingPoint);

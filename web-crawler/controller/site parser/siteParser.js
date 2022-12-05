@@ -21,7 +21,7 @@ const parseSite = async (page) => {
 
   //getting the sites entire doc
   const _DOC = await page.content();
-  if (_DOC) console.log(extractFullText(_DOC));
+  if (_DOC) extractFullText(_DOC);
   // scrapps the description from the page
   // const description = (await page.$("meta[name='description']"))
   //   ? await page.$eval("meta[name='description']", (meta) => {
