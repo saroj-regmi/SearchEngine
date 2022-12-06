@@ -1,6 +1,6 @@
 import robotsParser from "robots-txt-parser";
 const robots = robotsParser();
- 
+
 const checkRobots = async (url) => {
   try {
     await robots.useRobotsFor(url);
