@@ -1,4 +1,5 @@
 import checkRobots from "./checkRobots.js";
+import fileterLink from "./filterLinks.js";
 
 const getLinks = async (page) => {
   try {
@@ -8,9 +9,13 @@ const getLinks = async (page) => {
       });
     });
 
+    // removes the file links
+    const filteredLinks = fileterLink(links);
+
+    // gets the links that can be scrapped
     const scrapAbleLinks = await Promise.all(
-      links.map(async (link) => {
-        return await checkRobots(link);
+      filteredLinks.filter(async (link) => {
+        return (await checkRobots(link)) && link;
       })
     );
 

@@ -7,8 +7,7 @@ const checkRobots = async (url) => {
     if (await robots.canCrawl(url)) {
       return url;
     } else {
-      console.log("I cannot do that pal");
-      return "cannot crawl";
+      return false;
     }
   } catch (error) {
     console.log(error);

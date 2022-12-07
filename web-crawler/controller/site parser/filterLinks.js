@@ -7,21 +7,29 @@ const fileExtension = JSON.parse(
 
 const fileterLink = (links) => {
   try {
-    return links.filter((link) => {
+    const validLinks = links.filter((link) => {
       // checking for the file extension
-      let containsExt = false;
+      let invalidLink = false;
 
       //   extracting the individual extension and comparing it
       for (var i in fileExtension) {
-        if (link.includes(fileExtension[i])) {
-          containsExt = true;
+        if (
+          link.includes(fileExtension[i]) ||
+          link.includes("javascript:void(0)") ||
+          link.includes("javascript:")
+        ) {
+          invalidLink = true;
           break;
         }
       }
 
       // if url doesnot contain any file extension then it is valid one
-      if (!containsExt) return link;
+      if (!invalidLink) return link;
     });
+
+    const uniqueLinks = new Array(...new Set([...validLinks]));
+
+    return uniqueLinks;
   } catch (e) {
     console.log("Cannot filter link due to \n" + e.message);
   }

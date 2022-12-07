@@ -4,8 +4,8 @@ const getCoverImage = async (page) => {
       ? await page.$eval("meta[property='og:image']", (meta) => {
           return meta.content;
         })
-      : (await page.$('property="twitter:image"'))
-      ? await page.$eval('property="twitter:image"', (meta) => {
+      : (await page.$('meta[property="twitter:image"]'))
+      ? await page.$eval('meta[property="twitter:image"]', (meta) => {
           return meta.content;
         })
       : "";
