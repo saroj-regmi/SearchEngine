@@ -7,12 +7,12 @@ const startScrapping = async (startingPoint) => {
 
   const page = await browser.newPage();
 
-  
   try {
     await page.goto(startingPoint);
 
     const scrappedData = await parseSite(page);
 
+    console.log(scrappedData);
     // closing the browser
     browser.close();
     return scrappedData;

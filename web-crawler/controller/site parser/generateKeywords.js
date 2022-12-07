@@ -1,10 +1,8 @@
 import extractFullText from "./extractFullText.js";
-
-// grammer stuff
 import { readFile } from "fs/promises";
 
+// grammer stuff
 // prepositions, pronouns articles and common verbs
-
 const grammer = JSON.parse(
   await readFile(new URL("./grammer/grammer.json", import.meta.url))
 );
@@ -22,7 +20,6 @@ const extractKeyword = (array) => {
     if (currentItem.length < 2) continue;
 
     // checking it the word being checked already exists in the keywords or not
-
     if (keywords.includes(currentItem)) continue;
 
     let repeat = 0;
@@ -41,7 +38,10 @@ const extractKeyword = (array) => {
 const generateKeywords = async (page) => {
   const fullText = await extractFullText(await page.content());
 
+  // breaking the words into array
   const textArray = fullText.split(" ");
+  
+  // extracts the valid repeated words as keywords
   const keywords = extractKeyword(textArray);
 
   return keywords;
