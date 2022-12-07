@@ -1,16 +1,17 @@
-import robotsParser from "robots-txt-parser";
+import robotsParser from "robots-parser";
 const robots = robotsParser();
 
 const checkRobots = async (url) => {
   try {
-    await robots.useRobotsFor(url);
-    if (await robots.canCrawl(url)) {
+    if (await robots.isAllowed(url)) {
       return url;
     } else {
       return false;
     }
   } catch (error) {
-    console.log(error);
+    console.log(
+      "error occured while checking for crawling permission " + error.message
+    );
     return false;
   }
 };
