@@ -1,17 +1,23 @@
 import checkRobots from "./checkRobots.js";
 
 const getLinks = async (page) => {
-  const links = await page.$$eval("a", (tags) => {
-    try {
+  try {
+    const links = await page.$$eval("a", (tags) => {
       return tags.map((tag) => {
-        if (checkRobots(tag.href)) return tag.href;
+        return tag.href;
       });
-    } catch (e) {
-      console.log("cannot process getlinks due to \n" + e.message);
-    }
-  });
+    });
 
-  return links;
+    const scrapAbleLinks = await Promise.all(
+      links.map(async (link) => {
+        return await checkRobots(link);
+      })
+    );
+
+    return scrapAbleLinks;
+  } catch (e) {
+    console.log("cannot process getlinks due to \n" + e.message);
+  }
 };
 
 export default getLinks;

@@ -5,9 +5,10 @@ const checkRobots = async (url) => {
   try {
     await robots.useRobotsFor(url);
     if (await robots.canCrawl(url)) {
-      return true;
+      return url;
     } else {
-      return false;
+      console.log("I cannot do that pal");
+      return "cannot crawl";
     }
   } catch (error) {
     console.log(error);

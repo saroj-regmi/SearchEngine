@@ -3,7 +3,6 @@ import getKeywords from "./getKeywords.js";
 import getCoverImage from "./getCoverImage.js";
 import getLinks from "./getLinks.js";
 const parseSite = async (page) => {
-  
   //
   //
   //
@@ -15,7 +14,7 @@ const parseSite = async (page) => {
   const link = await page.url();
 
   // contains all the links from the page
-  const links = getLinks(page);
+  const links = await getLinks(page);
 
   // getting the site title
   const title = await page.$eval("title", (tag) => {
