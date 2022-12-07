@@ -1,6 +1,7 @@
 import getDescription from "./getDescription.js";
 import getKeywords from "./getKeywords.js";
-import getCoverImage from "./getCoverImage.js"
+import getCoverImage from "./getCoverImage.js";
+import getLinks from "./getLinks.js";
 const parseSite = async (page) => {
   //
   //
@@ -10,15 +11,16 @@ const parseSite = async (page) => {
   //
   //
 
+
+  const link = await 
+
   // contains all the links from the page
-  // const links = await page.$$eval("a", (tags) => {
-  //   return tags.map((tag) => tag.href);
-  // });
+  const links = getLinks(page);
 
   // getting the site title
-  // const title = await page.$eval("title", (tag) => {
-  //   return tag.innerText;
-  // });
+  const title = await page.$eval("title", (tag) => {
+    return tag.innerText;
+  });
 
   // scrapps the description from the page
   const description = await getDescription(page);
@@ -30,12 +32,11 @@ const parseSite = async (page) => {
   const coverImage = await getCoverImage(page);
 
   return {
-    title: "", // main title of the page
+    title: title, // main title of the page
     link: "", // this will store the actual link of the site
-    coverImage: {}, // the cover image of that will be showed when it is queried
-    allText: "", // contains all the site text information
-    links: [], // contains all the other links that can reused to scrapp more information and then update the database.
-    Description: "", // contains a short description of the site that is queried
+    coverImage: coverImage, // the cover image of that will be showed when it is queried
+    links: links, // contains all the other links that can reused to scrapp more information and then update the database.
+    Description: description, // contains a short description of the site that is queried
     keywords: keywords, // contains all the words or keywords that best describe the site
   };
 };

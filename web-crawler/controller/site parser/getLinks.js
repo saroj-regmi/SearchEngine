@@ -9,3 +9,5 @@ const getLinks = async (page) => {
 
   return links;
 };
+
+export default getLinks;
