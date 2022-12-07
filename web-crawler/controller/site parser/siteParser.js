@@ -11,8 +11,7 @@ const parseSite = async (page) => {
   //
   //
 
-
-  const link = await 
+  const link = await page.url();
 
   // contains all the links from the page
   const links = getLinks(page);
@@ -33,7 +32,7 @@ const parseSite = async (page) => {
 
   return {
     title: title, // main title of the page
-    link: "", // this will store the actual link of the site
+    link: link, // this will store the actual link of the site
     coverImage: coverImage, // the cover image of that will be showed when it is queried
     links: links, // contains all the other links that can reused to scrapp more information and then update the database.
     Description: description, // contains a short description of the site that is queried

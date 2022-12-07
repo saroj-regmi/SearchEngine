@@ -6,6 +6,8 @@ const startScrapping = async (startingPoint) => {
   const browser = await puppeteer.launch();
 
   const page = await browser.newPage();
+
+  
   try {
     await page.goto(startingPoint);
 
