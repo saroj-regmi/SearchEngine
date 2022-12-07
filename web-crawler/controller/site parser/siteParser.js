@@ -1,6 +1,6 @@
 import getDescription from "./getDescription.js";
 import getKeywords from "./getKeywords.js";
-
+import getCoverImage from "./getCoverImage.js"
 const parseSite = async (page) => {
   //
   //
@@ -27,11 +27,7 @@ const parseSite = async (page) => {
   const keywords = await getKeywords(page);
 
   // gets the cover image
-  // const coverImage = (await page.$("meta[property='og:image']"))
-  //   ? await page.$eval("meta[property='og:image']", (meta) => {
-  //       return meta.content;
-  //     })
-  //   : false;
+  const coverImage = await getCoverImage(page);
 
   return {
     title: "", // main title of the page
