@@ -5,8 +5,6 @@ const fileExtension = JSON.parse(
   await readFile(new URL("./fileExtension.json", import.meta.url))
 );
 
-
-
 const fileterLink = (links) => {
   try {
     return links.filter((link) => {
