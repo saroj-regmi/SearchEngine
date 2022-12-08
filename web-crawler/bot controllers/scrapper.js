@@ -5,14 +5,14 @@ const startScrapping = async (startingPoint) => {
   //   creating brower instance
   const browser = await puppeteer.launch();
 
+  // creates a new page
   const page = await browser.newPage();
 
   try {
     await page.goto(startingPoint);
 
     const scrappedData = await parseSite(page);
-
-    console.log(scrappedData);
+    
     // closing the browser
     browser.close();
     return scrappedData;
