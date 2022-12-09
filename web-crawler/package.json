@@ -5,11 +5,8 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "dotenv": "^16.0.3",
-    "mongoose": "^6.7.4",
     "node-html-parser": "^6.1.4",
     "puppeteer": "^19.3.0",
-    "robots-parser": "^3.0.0",
-    "robots-txt-parser": "^2.0.3"
+    "robots-parser": "^3.0.0"
   }
 }
