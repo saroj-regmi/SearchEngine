@@ -1,5 +1,12 @@
 import express from "express";
 
+// getting the controllers
+import {
+  getAllRoutes,
+  changeRouteStatus,
+  deleteAllRoutes,
+} from "../controllers/_links.js";
+
 // creating the router
 const linkRouter = express.Router();
 
