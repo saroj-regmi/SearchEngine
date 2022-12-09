@@ -2,17 +2,19 @@ import express from "express";
 
 // getting the controllers
 import {
-  getAllRoutes,
-  changeRouteStatus,
-  deleteAllRoutes,
+  getAllLinks,
+  getUnscrappedLinks,
+  updateOneLink,
+  deleteAllLinks,
 } from "../controllers/_links.js";
 
 // creating the router
 const linkRouter = express.Router();
 
 // routes
-linkRouter.route("/").get(getAllRoutes);
-linkRouter.route("/changeStatus").patch(changeRouteStatus);
-linkRouter.route("/delete").delete(deleteAllRoutes);
+linkRouter.route("/").get(getAllLinks);
+linkRouter.route("/changeStatus").patch(updateOneLink); // for changing the mode of the link
+linkRouter.route("/delete").delete(deleteAllLinks);
+linkRouter.route("/unscrapped").get(getUnscrappedLinks);
 
 export default linkRouter;
